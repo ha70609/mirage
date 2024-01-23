@@ -1,0 +1,22 @@
+{
+    "name": "mirage",
+    "service": "app",
+    "dockerComposeFile": ["./docker-compose.yml"],
+    "workspaceFolder": "/app",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2.7.1": {}
+    },
+    "customizations": {
+        // Configure properties specific to VS Code.
+        "vscode": {
+          // Add the IDs of extensions you want installed when the container is created.
+          "extensions": [
+            "ms-dotnettools.csdevkit",
+            "ms-dotnettools.vscodeintellicode-csharp",
+            "genieai.chatgpt-vscode",
+            "DanielSanMedium.dscodegpt"
+            ]
+        }
+    },
+    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+}

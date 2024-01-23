@@ -1,0 +1,16 @@
+version: '3.2'
+services:
+  app:
+    build: .
+    tty: true
+    # network_mode: "host"
+    volumes:
+      - /home/t-shinmori/projects/mirage:/app:rw
+      #- /mnt/c/projects/leliel:/app:rw
+      #- /mnt/c/Users/t-shinmori/.aspnet/https:/https:ro
+    ports:
+      - 80
+      - 443
+
+
+
