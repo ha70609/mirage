@@ -1,4 +1,4 @@
-﻿namespace Creationline.Mirage.Domain.ValueObjects;
+﻿namespace Creationline.Mirage.Domain.Todo.ValueObjects;
 
 public class Colour : ValueObject
 {

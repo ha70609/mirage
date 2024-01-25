@@ -1,4 +1,4 @@
-﻿namespace Creationline.Mirage.Domain.Exceptions;
+﻿namespace Creationline.Mirage.Domain.Todo.Exceptions;
 
 public class UnsupportedColourException : Exception
 {

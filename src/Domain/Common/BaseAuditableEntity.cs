@@ -1,4 +1,6 @@
-﻿namespace Creationline.Mirage.Domain.Common;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Creationline.Mirage.Domain.Common;
 
 public abstract class BaseAuditableEntity : BaseEntity
 {

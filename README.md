@@ -125,6 +125,12 @@ git clone https://github.com/ha70609/mirage.git
 git config --global credential.helper store
 ```
 
+### gitignoreを作る
+
+```
+dotnet new gitignore
+```
+
 ### Links
 
 - [ASP.NET Core プロジェクトでの Identity のスキャフォールディング](

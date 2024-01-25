@@ -14,7 +14,8 @@
             "ms-dotnettools.csdevkit",
             "ms-dotnettools.vscodeintellicode-csharp",
             "genieai.chatgpt-vscode",
-            "DanielSanMedium.dscodegpt"
+            "DanielSanMedium.dscodegpt",
+            "SonarSource.sonarlint-vscode"
             ]
         }
     },
