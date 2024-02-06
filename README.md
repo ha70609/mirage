@@ -153,19 +153,31 @@ dotnet sln add src/Infrastructure
 dotnet sln add src/Application
 dotnet sln add src/Domain
 
-dotnet new xunit -o tests/Tests.Web
-dotnet new xunit -o tests/Tests.Infrastructure
-dotnet new xunit -o tests/Tests.Application
-dotnet new xunit -o tests/Tests.Domain
-dotnet sln add tests/Tests.Web
-dotnet sln add tests/Tests.Infrastructure
-dotnet sln add tests/Tests.Application
-dotnet sln add tests/Tests.Domain
-
+dotnet new xunit -o tests/UnitTests/Domain
+dotnet sln add tests/UnitTests/Domain
+ dotnet add tests/UnitTests/Domain reference src/Domain
+ 
 ** クリーンアーキテクチャテンプレート **
 
 [こっち(ardalis)](https://github.com/ardalis/cleanarchitecture)より[こっち(jasontaylordev)](https://github.com/jasontaylordev/CleanArchitecture)がよさそう
 
 
+# 構成のメモ
 
+- Domain
+  - 一番内側
+  - 他に何にも依存しない
+  - システムを考慮しないビジネスルールを定義
+    - ex:「備考欄には201文字以上入力できない」
+- Application
+  - システムに期待される振る舞い
+  - アプリケーション固有のビジネスルールを記述
+    - ex:「全ての値が正常値か検証する。正常であればユーザーを更新 or 生成」
+  - Domain層に依存する
 
+Infrastructure
+  - DBアクセスなど
+  - Application層に依存する
+Web
+　- ユーザーインターフェース
+  - Application層、Infrastructure層に依存する
