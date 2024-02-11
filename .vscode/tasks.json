@@ -36,6 +36,18 @@
                 "${workspaceFolder}/app.sln"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "test",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/app.sln"
+            ],
+            "problemMatcher": "$msCompile"
         }
     ]
 }

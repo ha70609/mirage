@@ -155,8 +155,16 @@ dotnet sln add src/Domain
 
 dotnet new xunit -o tests/UnitTests/Domain
 dotnet sln add tests/UnitTests/Domain
- dotnet add tests/UnitTests/Domain reference src/Domain
- 
+dotnet add tests/UnitTests/Domain reference src/Domain
+
+dotnet new xunit -o tests/UnitTests/Application
+dotnet sln add tests/UnitTests/Application
+dotnet add tests/UnitTests/Application reference src/Application
+dotnet add package coverlet.msbuild --package-directory tests/UnitTests/Application 
+
+dotnet add tests/UnitTests/Application/Application.csproj package coverlet.msbuild 
+
+--package-directory
 ** クリーンアーキテクチャテンプレート **
 
 [こっち(ardalis)](https://github.com/ardalis/cleanarchitecture)より[こっち(jasontaylordev)](https://github.com/jasontaylordev/CleanArchitecture)がよさそう
@@ -181,3 +189,9 @@ Infrastructure
 Web
 　- ユーザーインターフェース
   - Application層、Infrastructure層に依存する
+
+# Coverageの取得
+
+dotnet test --collect:"XPlat Code Coverage" | tee log.txt && \
+reportgenerator -reports:"$(echo $(tail -n 1 log.txt))" -targetdir:"coveragereport" -reporttypes:Html \
+rm log.txt
