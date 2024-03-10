@@ -19,5 +19,5 @@
             ]
         }
     },
-    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+    "postStartCommand": "sh .devcontainer/postStartCommand.sh"
 }

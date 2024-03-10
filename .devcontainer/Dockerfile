@@ -10,6 +10,7 @@ RUN apt-get update && \
     unzip \
     vim \
     jq \
+    nodejs \
     && apt-get clean
 
 # install dotnet tools
@@ -41,9 +42,6 @@ echo "PS1='\${debian_chroot:+(\$debian_chroot)}\\[\\\033[01;32m\\]\\u@\\h\\[\\\0
      # base ps1 string
      # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[1;30m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
 } >> ~/.bashrc
-
-# set git config
-RUN git config --global core.quotepath false
 
 # create workdir
 RUN mkdir /app
