@@ -19,10 +19,15 @@ var connectionString = builder.Configuration.GetConnectionString("MirageIdentity
 // builder.Services.AddDbContext<MirageIdentityDbContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddDbContext<MirageIdentityDbContext>(options => options.UseNpgsql(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<MirageIdentityDbContext>();
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<MirageIdentityDbContext>();
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddWebServices();
 
 var app = builder.Build();
 
@@ -37,10 +42,18 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseSwaggerUi(settings =>
+{
+    settings.Path = "/api";
+    settings.DocumentPath = "/api/specification.json";
+});
+
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.Run();
+app.MapEndpoints();
+
+ app.Run();
