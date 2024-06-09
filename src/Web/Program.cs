@@ -1,33 +1,17 @@
-using Microsoft.AspNetCore.Identity;
+using Creationline.Mirage.Infrastructure.Identity;
+using Creationline.Mirage.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Web.Areas.Identity.Data;
+
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("MirageIdentityDbContextConnection") ?? throw new InvalidOperationException("Connection string 'MirageIdentityDbContextConnection' not found.");
 
-// If using SqlServer
-// 1.Add SqlServer Pachage
-// ```
-// ex:
-// dotnet add src/Web package Microsoft.EntityFrameworkCore.SqlServer
-// ```
-// 2.Add using
-// ```
-// ex:
-// Microsoft.EntityFrameworkCore.SqlServer
-// ```
-// 3. UseSqlServer
-// builder.Services.AddDbContext<MirageIdentityDbContext>(options => options.UseNpgsql(connectionString));
-builder.Services.AddDbContext<MirageIdentityDbContext>(options => options.UseNpgsql(connectionString));
-
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<MirageIdentityDbContext>();
-
-
-// Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddWebServices();
+//builder.Services.AddWebServices();
+
+// Add services to the container.
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -42,18 +26,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseSwaggerUi(settings =>
-{
-    settings.Path = "/api";
-    settings.DocumentPath = "/api/specification.json";
-});
-
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.MapEndpoints();
-
- app.Run();
+app.Run();

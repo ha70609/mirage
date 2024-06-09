@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 
+
 namespace Creationline.Mirage.Web.Infrastructure;
 
 public static class MethodInfoExtensions

@@ -195,3 +195,9 @@ Web
 dotnet test --collect:"XPlat Code Coverage" | tee log.txt && \
 reportgenerator -reports:"$(echo $(tail -n 1 log.txt))" -targetdir:"coveragereport" -reporttypes:Html \
 rm log.txt
+
+# 認証
+
+ここら辺参考にしたらできそう？
+https://github.com/jasontaylordev/CleanArchitecture/issues/287
+https://learn.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-8.0&tabs=visual-studio
